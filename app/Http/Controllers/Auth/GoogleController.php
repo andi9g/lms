@@ -4,10 +4,14 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\fotoprofilM;
+use App\Models\semesterM;
+use App\Models\posisiM;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Session;
 
 class GoogleController extends Controller
 {
@@ -25,8 +29,14 @@ class GoogleController extends Controller
             ->stateless() // ⚠️ penting untuk mencegah state mismatch
             ->user();
             
-            // Mencari user berdasarkan email, atau buat baru jika belum ada
-            $user = User::updateOrCreate(
+            $posisi = "guru";
+            $status = false;
+            if(User::count() == 0) {
+                $posisi = "admin";
+                $status = true;
+            }
+
+            $user = User::firstOrCreate(
                 ['email' => $googleUser->getEmail()],
                 [
                     'name' => $googleUser->getName(),
@@ -35,10 +45,28 @@ class GoogleController extends Controller
                 ]
             );
 
+            fotoprofilM::firstOrCreate([
+                "iduser" => $user->iduser,
+            ],[
+                "fotoprofil" => $googleUser->getAvatar(),
+            ]);
+
+            posisiM::firstOrCreate([
+                "iduser" => $user->iduser,
+            ],[
+                "posisi" => $posisi,
+                "status" => $status,
+            ]);
+
             // dd($user);
             // 🔐 Bersihkan session sebelum login
             request()->session()->invalidate();
             request()->session()->regenerateToken();
+            $semester = semesterM::class;
+            if($semester::count()>0) {
+                $semester = $semester::orderBy("idsemester", "desc")->first();
+                Session::put("idsemester", $semester->idsemester);
+            }
 
             Auth::login($user);
 

@@ -1,17 +1,18 @@
-<x-layouts.app :title="__('Dashboard')">
+<x-layouts.app :title="$judul">
+  
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
         <div>
             <h1 class="mb-2 text-4xl font-bold text-heading md:text-4xl">
-                <span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">{{ __("Dashboard") }}</span>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">{{ $judul }}</span>
             </h1>
             <flux:breadcrumbs>
                 <flux:breadcrumbs.item href="{{ url('/dashboard', []) }}" icon="home">Home</flux:breadcrumbs.item>
-                <flux:breadcrumbs.item>Dashboard</flux:breadcrumbs.item>
+                <flux:breadcrumbs.item>Mata pelajaran</flux:breadcrumbs.item>
             </flux:breadcrumbs>
         </div>
 
-        <div>
-           <flux:input icon="magnifying-glass" placeholder="Search orders" />
+        <div class="flex">
+           <flux:input type='text' readonly variant="filled" :value="'Semester '.$semester->namasemester. ' (TP.'.$semester->tahunpelajaran.')'" class="ms-auto w-lg font-bold" style="text-transform: uppercase;text-align:center;font-size: 13pt;"/>
         </div>
         
     </div>
@@ -19,11 +20,10 @@
     <flux:separator variant="subtle" class="my-4"/>
 
     
-    <flux:heading size="xl" level="1">Selamat Datang, {{ auth()->user()->name }}</flux:heading>
-    <flux:text class="mt-2 mb-6 text-base">Here's what's new today</flux:text>
+    <livewire:mapel-live>
 
-
-
+    
+    
     @if(session()->has('warning'))
     <script>
         Swal.fire({
@@ -33,6 +33,6 @@
         });
     </script>
     @endif
+    
+    
 </x-layouts.app>
-
-

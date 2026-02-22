@@ -8,21 +8,19 @@
             <flux:breadcrumbs>
                 <flux:breadcrumbs.item href="{{ url('/dashboard', []) }}" icon="home">Home</flux:breadcrumbs.item>
                 <flux:breadcrumbs.item>Setting</flux:breadcrumbs.item>
-                <flux:breadcrumbs.item>Instansi</flux:breadcrumbs.item>
+                <flux:breadcrumbs.item>Semester</flux:breadcrumbs.item>
             </flux:breadcrumbs>
         </div>
 
-        <div>
-           <flux:input icon="magnifying-glass" placeholder="Search orders" />
-        </div>
+       
         
     </div>
 
     <flux:separator variant="subtle" class="my-4"/>
 
     
-
-    <livewire:instansi-live >
+    
+    <livewire:semester-live :idinstansi="$instansi->idinstansi">
 
     
 </x-layouts.app>

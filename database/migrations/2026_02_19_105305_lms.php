@@ -17,7 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger("iduser");
             $table->unsignedBigInteger("idinstansi")->nullable();
             $table->char("nip", 18);
-            $table->string("nama");
+            $table->string("namalengkap");
             $table->timestamps();
         });
         Schema::dropIfExists('posisi');
@@ -25,6 +25,7 @@ return new class extends Migration
             $table->bigIncrements('idposisi');
             $table->unsignedBigInteger("iduser");
             $table->enum("posisi", ["admin", "guru", "waka", "kepsek"]);
+            $table->boolean("status")->default(false);
             $table->timestamps();
         });
         Schema::dropIfExists('fotoprofil');
@@ -82,7 +83,7 @@ return new class extends Migration
             $table->bigIncrements('idinstansi');
             $table->char("npsn", 20)->nullable();
             $table->string("namainstansi")->nullable();
-            $table->string("alamat")->nullable();
+            $table->string("alamatinstansi")->nullable();
             $table->string("logo")->nullable();
             $table->timestamps();
         });

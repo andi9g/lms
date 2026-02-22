@@ -10,13 +10,15 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
+        "barryvdh/laravel-dompdf": "^3.1",
         "jantinnerezo/livewire-alert": "^4.0",
         "laravel/framework": "^12.0",
         "laravel/socialite": "^5.24",
         "laravel/tinker": "^2.10.1",
         "livewire/flux": "2.10.2",
         "livewire/flux-pro": "2.10.2",
-        "livewire/volt": "^1.7.0"
+        "livewire/volt": "^1.7.0",
+        "realrashid/sweet-alert": "*"
     },
     "repositories": [     
         {

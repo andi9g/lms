@@ -11,7 +11,11 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        //
+        $middleware->alias([
+            'admin' => \App\Http\Middleware\GerbangAdmin::class,
+            'identitas' => \App\Http\Middleware\GerbangIdentitas::class,
+            'status' => \App\Http\Middleware\GerbangStatus::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //

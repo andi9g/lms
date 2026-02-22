@@ -37,7 +37,7 @@ class User extends Authenticatable
     }
     public function fotoprofil()
     {
-        return $this->hasMany(fotoprofilM::class, 'iduser', 'iduser');
+        return $this->hasOne(fotoprofilM::class, 'iduser', 'iduser');
     }
     
 
