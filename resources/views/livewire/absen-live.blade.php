@@ -27,18 +27,25 @@
                                     @endforeach
         
                                 </flux:select>
+
+                                <flux:select variant="listbox" searchable placeholder="Pilih Ruangan..." label="Ruangan" wire:model="idruang">
+                                    @foreach ($ruang as $item)
+                                    <flux:select.option :value="$item->idruang">{{ $item->namaruang }}</flux:select.option>
+                                        
+                                    @endforeach
+                                </flux:select>
         
         
-                                <div class="grid grid-cols-2 gap-5">
-                                    <flux:select variant="listbox" searchable placeholder="Pilih Ruangan..." label="Ruangan" wire:model="idruang">
-                                        @foreach ($ruang as $item)
-                                        <flux:select.option :value="$item->idruang">{{ $item->namaruang }}</flux:select.option>
+                                <div class="grid grid-cols-2 gap-5 items-start">
+                                    <flux:select variant="listbox" searchable placeholder="Pilih Jam ke..." label="Jam Pelajaran Ke" wire:model="masuk">
+                                        @foreach ($sisa as $item)
+                                        <flux:select.option :value="$item">Jam Ke {{ $item }}</flux:select.option>
                                             
                                         @endforeach
                                     </flux:select>
-                                    <flux:select variant="listbox" searchable placeholder="Pilih Jam ke..." label="Jam Pelajaran" wire:model="idjp">
-                                        @foreach ($jp as $item)
-                                        <flux:select.option :value="$item->idjp">Jam Ke {{ $item->namajp }}</flux:select.option>
+                                    <flux:select variant="listbox" searchable placeholder="Pilih Jam ke..." label="Sampai Jam Ke" wire:model="keluar">
+                                        @foreach ($sisa as $item)
+                                        <flux:select.option :value="$item">Jam Ke {{ $item }}</flux:select.option>
                                             
                                         @endforeach
                                     </flux:select>
@@ -68,9 +75,10 @@
                     <flux:table>
                         <flux:table.columns >
                             <flux:table.column width="5px">No</flux:table.column>
-                            <flux:table.column>Waktu</flux:table.column>
-                            <flux:table.column>Ruang</flux:table.column>
                             <flux:table.column>Mapel</flux:table.column>
+                            <flux:table.column>Ruang</flux:table.column>
+                            <flux:table.column>Jam Masuk</flux:table.column>
+                            <flux:table.column>Jam Selesai</flux:table.column>
                             <flux:table.column>Rombel</flux:table.column>
                             <flux:table.column>Jam</flux:table.column>
                         </flux:table.columns>
@@ -79,9 +87,10 @@
                             @foreach ($absenpelajaran as $item)
                             <flux:table.row>
                                 <flux:table.cell>{{ $loop->iteration }}</flux:table.cell>
-                                <flux:table.cell>Jam ke {{ $item->jp->namajp }}</flux:table.cell>
-                                <flux:table.cell>{{ $item->ruang->namaruang }}</flux:table.cell>
                                 <flux:table.cell>{{ $item->gurumapel->mapel->namamapel }}</flux:table.cell>
+                                <flux:table.cell>{{ $item->ruang->namaruang??"" }}</flux:table.cell>
+                                <flux:table.cell>Jam ke {{ $item->masuk }}</flux:table.cell>
+                                <flux:table.cell>Jam ke {{ $item->keluar }}</flux:table.cell>
                                 <flux:table.cell>
                                     {{ $item->gurumapel->kelas->namakelas. " " . $item->gurumapel->jurusan->namajurusan }}
                                 </flux:table.cell>

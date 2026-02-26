@@ -27,7 +27,8 @@ return new class extends Migration
             $table->bigIncrements('idabsenpelajaran');
             $table->unsignedBigInteger("iduser");
             $table->unsignedBigInteger("idgurumapel");
-            $table->unsignedBigInteger("idjp");
+            $table->integer("masuk");
+            $table->integer("keluar");
             $table->unsignedBigInteger("idruang");
             $table->string("materi");
             $table->date("tanggalabsen");

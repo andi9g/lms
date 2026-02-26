@@ -24,7 +24,7 @@ Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallba
 
 Route::get("profil", [profilC::class, "profil"])->name("profil")->middleware(['auth', 'verified']);
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'identitas', 'status'])->group(function () {
 
 
     Route::middleware(['admin'])->group(function () {

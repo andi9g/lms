@@ -28,10 +28,19 @@ class MasterdataLive extends Component
     {
         $this->idinstansi = $idinstansi;
         $this->idsemester = $idsemester;
+        
     }
 
     public function render()
     {
+        $array = [
+            "Kelas",
+            "Lapangan",
+            "Perpustakaan",
+            "Lab Komputer",
+            "Lab IPA",
+        ];
+        
         $kelas = kelasM::where("idinstansi" , $this->idinstansi)->get();
         $jurusan = jurusanM::where("idinstansi" , $this->idinstansi)->get();
         $ruang = ruangM::where("idinstansi" , $this->idinstansi)->get();
@@ -39,16 +48,13 @@ class MasterdataLive extends Component
         $jp = jpM::where("idinstansi" , $this->idinstansi)->get();
 
         $isiruang = $ruang->pluck("namaruang")->toArray();
-
-        foreach ($kelas as $kel) {
-            foreach ($jurusan as $jur) {
-                $value = $kel->namakelas." ".$jur->namajurusan;
-                if (!in_array($value, $this->dataruang) && !in_array($value, $isiruang) ) {
-                    $this->dataruang[] = $kel->namakelas." ".$jur->namajurusan;
-                }
+        $dataruangan = $this->dataruang;
+        
+        foreach ($array as $index => $dataruang) {
+            if(!in_array($dataruang, $isiruang)) {
+                $this->dataruang[] = $dataruang;
             }
         }
-        
         
         return view('livewire.masterdata-live', [
             "kelas" => $kelas,

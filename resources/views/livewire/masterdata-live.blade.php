@@ -1,11 +1,11 @@
 <div>
     <flux:tab.group>
         <flux:tabs>
-            <flux:tab name="Kelas" icon="user">Kelas</flux:tab>
-            <flux:tab name="Jurusan" icon="cog-6-tooth">Jurusan</flux:tab>
-            <flux:tab name="Mapel" icon="banknotes">Mapel</flux:tab>
-            <flux:tab name="Ruang" icon="banknotes">Ruang</flux:tab>
-            <flux:tab name="JP" icon="banknotes">Jam Pelajaran</flux:tab>
+            <flux:tab name="Kelas" icon="home-modern">Kelas</flux:tab>
+            <flux:tab name="Jurusan" icon="beaker">Jurusan</flux:tab>
+            <flux:tab name="Mapel" icon="book-open">Mapel</flux:tab>
+            <flux:tab name="Ruang" icon="home">Ruang</flux:tab>
+            <flux:tab name="JP" icon="clock">Jam Pelajaran</flux:tab>
         </flux:tabs>
 
         <flux:tab.panel name="Kelas">

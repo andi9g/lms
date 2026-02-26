@@ -33,12 +33,19 @@ class laporanC extends Controller
 
         $tglindo = Carbon::parse($tanggalabsen)->locale("id")->isoFormat("dddd, DD MMMM YYYY");
 
+        $absen = absenpelajaranM::where('tanggalabsen', $tanggalabsen)
+            ->get()
+            ->groupBy('iduser');
+
+            // dd($absen);
+
         $pdf = Pdf::loadView("pages.laporan.pdf.absen",[
             "instansi" => $instansi,
             "tglindo" => $tglindo,
             "detailuser" => $detailuser,
             "tanggalabsen" => $tanggalabsen,
             "jp" => $jp,
+            "absen" => $absen,
         ])
         ->setPaper('a4', 'landscape');;
 
